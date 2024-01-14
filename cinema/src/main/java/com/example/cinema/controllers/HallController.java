@@ -7,6 +7,7 @@ import com.example.cinema.services.HallService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,7 +18,7 @@ public class HallController {
     private final HallService hallService;
 
     @PostMapping("/create")
-    ResponseEntity<?> create(HallCreateRequest request, Language language) {
+    ResponseEntity<?> create(@RequestBody HallCreateRequest request, Language language) {
         return ResponseEntity.ok(hallService.create(request, language));
     }
 }

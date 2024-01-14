@@ -1,6 +1,8 @@
 package com.example.cinema.models.entity;
 
 import com.example.cinema.base.BaseEntity;
+import com.example.cinema.models.enums.Format;
+import com.example.cinema.models.enums.Genre;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,23 +11,22 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name = "tb_hall")
 @AllArgsConstructor
 @NoArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @Data
-public class Hall extends BaseEntity {
+@Entity
+@Table(name = "tb_film")
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class Film extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    @Column(name = "name", unique = true, nullable = false)
     String name;
-    @ManyToOne (fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_cinema")
-    Cinema cinema;
-    @Column(nullable = false)
-    int seatRows;
-    @Column(nullable = false)
-    int seatCount;
+    String logo;
+    String definition;
+    @Enumerated(EnumType.STRING)
+    Genre genre;
+    String ageRestrictions;
+    @Enumerated(EnumType.STRING)
+    Format format;
 }
