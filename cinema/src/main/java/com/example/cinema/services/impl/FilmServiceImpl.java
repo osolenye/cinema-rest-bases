@@ -15,8 +15,12 @@ import com.example.cinema.models.requests.FilmCreateRequest;
 import com.example.cinema.rep.FilmRep;
 import com.example.cinema.services.FilmService;
 import com.example.cinema.utils.ResourceBundle;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @Service
 public class FilmServiceImpl extends BaseServiceImpl<Film, FilmRep, FilmDto, FilmMapper> implements FilmService {
@@ -44,5 +48,10 @@ public class FilmServiceImpl extends BaseServiceImpl<Film, FilmRep, FilmDto, Fil
         } catch (UnsavedDataException e) {
             throw new UnsavedDataException(ResourceBundle.periodMess("unsavedData", language));
         }
+    }
+
+    @Override
+    public Page<Film> filter(Integer limit, Integer offset) {
+        return r.findAll(PageRequest.of(offset, limit));
     }
 }
