@@ -1,5 +1,9 @@
 package com.example.cinema.base;
 
+import com.example.cinema.exceptions.FindByIdException;
+import com.example.cinema.models.enums.Language;
+import com.example.cinema.models.responses.Response;
+import com.example.cinema.utils.ResourceBundle;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.MappedSuperclass;
@@ -29,9 +33,12 @@ public abstract class BaseServiceImpl<E extends BaseEntity,
         return mapper.toDto(r.save(mapper.toEntity(d, context)),context);
     }
 
+
     @Override
-    public D findById(Long id) {
-        return mapper.toDto(r.findById(id).orElseThrow(() -> new RuntimeException("couldn't find object with such id")), context);
+    public D findById(Long id, Language language) {
+//        return mapper.toDto(r.findById(id).orElseThrow(() -> new FindByIdException(ResourceBundle("idNotFound", language))), context);
+        return mapper.toDto(r.findById(id).orElseThrow(()-> new FindByIdException(ResourceBundle.periodMess("idNotFound", language))), context);
+
     }
 
     @Override

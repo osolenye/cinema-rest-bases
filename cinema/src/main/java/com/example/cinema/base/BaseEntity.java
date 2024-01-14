@@ -19,6 +19,7 @@ public class BaseEntity {
     @PrePersist
     protected void onCreate() {
         addDate = new Date();
+        updateDate = new Date();
     }
     @PreUpdate
     protected void onUpdate() {
