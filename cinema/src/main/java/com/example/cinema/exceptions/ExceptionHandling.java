@@ -26,4 +26,10 @@ public class ExceptionHandling {
     public ResponseEntity<?> tokenEx(TokenValidationException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.UNAUTHORIZED);
     }
+
+    @ExceptionHandler({NotUniqueException.class})
+    public ResponseEntity<?> notUniqueEx(NotUniqueException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.I_AM_A_TEAPOT);
+    }
 }
+
