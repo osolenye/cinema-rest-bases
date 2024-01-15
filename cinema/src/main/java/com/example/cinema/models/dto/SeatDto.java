@@ -14,5 +14,5 @@ public class SeatDto extends BaseDto {
     Long id;
     int seat;
     SeatStatus status;
-    HallDto hall;
+    SessionDto session;
 }

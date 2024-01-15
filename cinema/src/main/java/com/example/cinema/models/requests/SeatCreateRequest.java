@@ -11,5 +11,5 @@ import lombok.experimental.FieldDefaults;
 public class SeatCreateRequest {
 
     int seat;
-    Long hallId;
+    Long sessionId;
 }

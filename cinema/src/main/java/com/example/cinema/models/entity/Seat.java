@@ -24,12 +24,12 @@ public class Seat extends BaseEntity {
     @Enumerated(EnumType.STRING)
     SeatStatus status;
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_hall", nullable = false)
-    Hall hall;
+    @JoinColumn(name = "id_session", nullable = false)
+    Session session;
 
     @Override
     protected void onCreate() {
         super.onCreate();
-        status = SeatStatus.OCCUPIED;
+//        status = SeatStatus.FREE;
     }
 }
