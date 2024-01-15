@@ -2,6 +2,7 @@ package com.example.cinema.services.impl;
 
 import com.example.cinema.base.BaseServiceImpl;
 import com.example.cinema.base.CycleAvoidingMappingContext;
+import com.example.cinema.exceptions.NotUniqueException;
 import com.example.cinema.exceptions.UnsavedDataException;
 import com.example.cinema.mappers.CinemaMapper;
 import com.example.cinema.microservices.FileServiceFeign;
@@ -37,12 +38,16 @@ public class CinemaServiceImpl extends BaseServiceImpl<Cinema, CinemaRep, Cinema
     @Override
     public CinemaDto create(MultipartFile logo, CinemaCreateRequest request, Language language) {
         try {
-            CinemaDto cinemaDto = new CinemaDto();
-            cinemaDto.setName(request.getName());
-            cinemaDto.setDescription(request.getDescription());
-            FileResponse fileResponse = fileServiceFeign.upload(request.getLogo());
-            cinemaDto.setLogo(fileResponse.getDownloadUri());
-            return save(cinemaDto);
+            if (!r.existsByName(request.getName())) {
+                CinemaDto cinemaDto = new CinemaDto();
+                cinemaDto.setName(request.getName());
+                cinemaDto.setDescription(request.getDescription());
+                FileResponse fileResponse = fileServiceFeign.upload(request.getLogo());
+                cinemaDto.setLogo(fileResponse.getDownloadUri());
+                return save(cinemaDto);
+            } else {
+                throw new NotUniqueException(ResourceBundle.periodMess("notUniqueName", language));
+            }
         } catch (UnsavedDataException e) {
             throw new UnsavedDataException(ResourceBundle.periodMess("unsavedData", language));
         }

@@ -7,7 +7,11 @@ import com.example.cinema.models.requests.CinemaCreateRequest;
 import com.example.cinema.models.responses.Response;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 
 public interface CinemaService extends BaseService<CinemaDto> {
     CinemaDto create(MultipartFile logo, CinemaCreateRequest request, Language language);
+
+//    List<CinemaDto> findByName(String name);
 }

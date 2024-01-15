@@ -16,13 +16,16 @@ public class CinemaController {
     private final CinemaService cinemaService;
 
     @PostMapping("/create")
-    ResponseEntity<?>create(@ModelAttribute CinemaCreateRequest request, Language language) {
-        try {
-            return ResponseEntity.ok(cinemaService.create(request.getLogo(), request, language));
-        } catch (Exception e) {
-            return new ResponseEntity<>("couldn't create the object", HttpStatus.I_AM_A_TEAPOT);
-        }
+    ResponseEntity<?> create(@ModelAttribute CinemaCreateRequest request, Language language) {
+        return ResponseEntity.ok(cinemaService.create(request.getLogo(), request, language));
     }
-
-
 }
+
+
+//    @GetMapping("/find/all")
+//    ResponseEntity<?> findAll() {
+//        return ResponseEntity.ok(cinemaService.findAll());
+//    }
+//
+
+
