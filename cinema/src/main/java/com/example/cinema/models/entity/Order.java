@@ -1,7 +1,6 @@
 package com.example.cinema.models.entity;
 
 import com.example.cinema.base.BaseEntity;
-import com.example.cinema.models.enums.Ticket;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,13 +13,13 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "tb_price")
+@Table(name = "tb_order")
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Price extends BaseEntity {
+
+public class Order extends BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     Long id;
-    double price;
-    @Enumerated(EnumType.STRING)
-    Ticket type;
+    double totalPrice;
+    int num;
 }

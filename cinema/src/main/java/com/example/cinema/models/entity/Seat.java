@@ -1,7 +1,7 @@
 package com.example.cinema.models.entity;
 
-
 import com.example.cinema.base.BaseEntity;
+import com.example.cinema.models.enums.SeatStatus;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,27 +9,27 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
-import java.util.Date;
 
+@Data
+@Entity
+@Table(name = "tb_seat")
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "tb_session")
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Data
-public class Session extends BaseEntity {
+public class Seat extends BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     Long id;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_film", nullable = false)
-    Film film;
+    int seat;
+    @Enumerated(EnumType.STRING)
+    SeatStatus status;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_hall", nullable = false)
     Hall hall;
-    Date dateTime;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_price", nullable = false)
-    Price price;
-    double discount;
+
+    @Override
+    protected void onCreate() {
+        super.onCreate();
+        status = SeatStatus.OCCUPIED;
+    }
 }
