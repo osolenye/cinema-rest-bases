@@ -29,4 +29,5 @@ public class Film extends BaseEntity {
     String ageRestrictions;
     @Enumerated(EnumType.STRING)
     Format format;
+
 }
