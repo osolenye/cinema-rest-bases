@@ -19,7 +19,7 @@ import java.util.Date;
 @Data
 public class Session extends BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     Long id;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_film", nullable = false)

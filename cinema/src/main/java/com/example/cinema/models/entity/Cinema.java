@@ -16,7 +16,7 @@ import lombok.experimental.FieldDefaults;
 @Table(name = "tb_cinema")
 public class Cinema extends BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     Long id;
     String logo;
     String name;
