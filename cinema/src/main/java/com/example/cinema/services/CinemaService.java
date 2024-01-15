@@ -14,4 +14,7 @@ public interface CinemaService extends BaseService<CinemaDto> {
     CinemaDto create(MultipartFile logo, CinemaCreateRequest request, Language language);
 
 //    List<CinemaDto> findByName(String name);
+    CinemaDto findByName(String name, Language language);
+
+    List<CinemaDto> findAll(Language language);
 }

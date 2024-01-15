@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public interface CinemaRep extends BaseRep<Cinema> {
-//    List<CinemaDto> findByName(String name);
+    Cinema findByName(String name);
     boolean existsByName(String name);
 
 }

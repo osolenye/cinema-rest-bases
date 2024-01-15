@@ -19,13 +19,16 @@ public class CinemaController {
     ResponseEntity<?> create(@ModelAttribute CinemaCreateRequest request, Language language) {
         return ResponseEntity.ok(cinemaService.create(request.getLogo(), request, language));
     }
+
+
+    @GetMapping("/find/by/{name}")
+    ResponseEntity<?> findByName(@RequestParam String name, @RequestParam Language language) {
+        return ResponseEntity.ok(cinemaService.findByName(name, language));
+    }
+
+    @GetMapping("/find/all")
+    ResponseEntity<?> findAll(@RequestParam Language language) {
+        return ResponseEntity.ok(cinemaService.findAll(language));
+    }
 }
-
-
-//    @GetMapping("/find/all")
-//    ResponseEntity<?> findAll() {
-//        return ResponseEntity.ok(cinemaService.findAll());
-//    }
-//
-
 
