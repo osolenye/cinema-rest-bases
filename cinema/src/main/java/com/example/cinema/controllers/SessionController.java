@@ -1,5 +1,6 @@
 package com.example.cinema.controllers;
 
+import com.example.cinema.mappers.CinemaMapper;
 import com.example.cinema.models.enums.Language;
 import com.example.cinema.models.requests.CinemaCreateRequest;
 import com.example.cinema.models.requests.SessionCreateRequest;
@@ -21,6 +22,8 @@ import java.util.Date;
 public class SessionController {
     private final SessionService sessionService;
     private final FilmService filmService;
+    private final CinemaService cinemaService;
+    private final CinemaMapper cinemaMapper;
 
     @PostMapping("/create")
     ResponseEntity<?> create(@RequestBody SessionCreateRequest request, Language language) {
@@ -42,5 +45,11 @@ public class SessionController {
             throw new RuntimeException(e);
         }
 
+    }
+
+
+    @GetMapping("/find/by/{cinema}")
+    ResponseEntity<?> findByCinema(@RequestParam Long cinemaId, @RequestParam Language language) {
+            return ResponseEntity.ok(sessionService.findByCinema(cinemaService.findById(cinemaId, language), language));
     }
 }

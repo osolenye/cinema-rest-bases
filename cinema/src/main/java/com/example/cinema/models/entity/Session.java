@@ -32,4 +32,8 @@ public class Session extends BaseEntity {
     @JoinColumn(name = "id_price", nullable = false)
     Price price;
     double discount;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_cinema", nullable = false)
+    Cinema cinema;
 }
