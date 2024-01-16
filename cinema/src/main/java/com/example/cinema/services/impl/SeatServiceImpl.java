@@ -34,13 +34,14 @@ public class SeatServiceImpl extends BaseServiceImpl<Seat, SeatRep, SeatDto, Sea
     private final SessionMapper sessionMapper;
 
     @Override
-    public SeatDto create(SeatCreateRequest request, Language language) {
+    public SeatDto create(SeatCreateRequest request, SeatStatus status, Language language) {
         try {
 //            HallDto hallDto = hallService.findById(request.getHallId(), language);
             SessionDto sessionDto = sessionService.findById(request.getSessionId(), language);
             if (!Objects.isNull(sessionDto)) {
                 SeatDto seatDto = new SeatDto();
                 seatDto.setSeat(request.getSeat());
+                seatDto.setStatus(status);
                 seatDto.setSession(sessionService.findById(request.getSessionId(), language));
                 return save(seatDto);
             } else {

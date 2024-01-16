@@ -20,8 +20,8 @@ public class SeatController {
     private final SessionService sessionService;
 
     @PostMapping("/create")
-    ResponseEntity<?> create(@RequestBody SeatCreateRequest request, Language language) {
-        return ResponseEntity.ok(seatService.create(request, language));
+    ResponseEntity<?> create(@RequestBody SeatCreateRequest request, @RequestParam SeatStatus status, Language language) {
+        return ResponseEntity.ok(seatService.create(request, status, language));
     }
 
     @GetMapping("/find/by/{status}")

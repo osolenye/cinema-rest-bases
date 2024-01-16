@@ -11,6 +11,6 @@ import com.example.cinema.models.requests.SeatCreateRequest;
 import java.util.List;
 
 public interface SeatService extends BaseService<SeatDto> {
-    SeatDto create(SeatCreateRequest request, Language language);
+    SeatDto create(SeatCreateRequest request, SeatStatus status, Language language);
     List<SeatDto> findByStatusAndSession(SeatStatus status, SessionDto session, Language language);
 }
