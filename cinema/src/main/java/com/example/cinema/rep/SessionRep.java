@@ -15,5 +15,5 @@ public interface SessionRep extends BaseRep<Session> {
     List<Session> findByFilm(Film film);
     List<Session> findByDateTime(Date dateTime);
     List<Session> findByCinema(Cinema cinema);
-    List<Session> findByCinemaAndDateTime(Cinema cinema, Date date);
+    List<Session> findByFilmAndDateTime(Film film, Date date);
 }

@@ -17,6 +17,6 @@ public interface SessionService extends BaseService<SessionDto> {
     List<SessionDto> findByFilm(FilmDto filmDto, Language language);
     List<SessionDto> findByDateTime(Date dateTime, Language language);
     List<SessionDto> findByCinema(CinemaDto cinemaDto, Language language);
-    List<SessionDto> findByCinemaAndDateTime(CinemaDto cinemaDto, Date datetime, Language language);
-    List<SessionByMovieAndDateResponse> findByCinemaAndDatetimeFormatted(CinemaDto cinemaDto, Date dateTime, Language language);
+    List<SessionDto> findByFilmAndDateTime(FilmDto filmDto, Date datetime, Language language);
+    List<SessionByMovieAndDateResponse> findByFilmAndDatetimeFormatted(FilmDto filmDto, Date dateTime, Language language);
 }

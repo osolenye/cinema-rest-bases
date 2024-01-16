@@ -106,9 +106,9 @@ public class SessionServiceImpl extends BaseServiceImpl<Session, SessionRep, Ses
     }
 
     @Override
-    public List<SessionDto> findByCinemaAndDateTime(CinemaDto cinemaDto, Date dateTime, Language language) {
+    public List<SessionDto> findByFilmAndDateTime(FilmDto filmDto, Date dateTime, Language language) {
         try {
-            return mapper.toDtos(r.findByCinemaAndDateTime(cinemaMapper.toEntity(cinemaDto, context), dateTime), context);
+            return mapper.toDtos(r.findByFilmAndDateTime(filmMapper.toEntity(filmDto, context), dateTime), context);
 
 
 
@@ -118,9 +118,9 @@ public class SessionServiceImpl extends BaseServiceImpl<Session, SessionRep, Ses
     }
 
     @Override
-    public List<SessionByMovieAndDateResponse> findByCinemaAndDatetimeFormatted(CinemaDto cinemaDto, Date dateTime, Language language) {
+    public List<SessionByMovieAndDateResponse> findByFilmAndDatetimeFormatted(FilmDto filmDto, Date dateTime, Language language) {
         try {
-            List<SessionDto> sessionDtos = findByCinemaAndDateTime(cinemaDto, dateTime, language);
+            List<SessionDto> sessionDtos = findByFilmAndDateTime(filmDto, dateTime, language);
             List<RoomMovieId> roomMovieIds = new ArrayList<>();
             List<Room> rooms = new ArrayList<>();
             List<CinemaHelp> cinemaHelps = new ArrayList<>();
@@ -142,21 +142,14 @@ public class SessionServiceImpl extends BaseServiceImpl<Session, SessionRep, Ses
                 //создаем инфу по всем залам в которых идет фильм
                 Room room = new Room();
                 room.setHallName(sessionDto.getHall().getName());
-//                List<RoomMovieId> roomMovieIds1 = new ArrayList<>();
-//                System.out.println(room.getRoomMovieIds());
-//                roomMovieIds1 = room.getRoomMovieIds();
-//                roomMovieIds1.add(roomMovieId);
-//                room.setRoomMovieIds(roomMovieIds1);
+
                 room.setRoomMovieIds(roomMovieIds);
                 rooms.add(room);
 
                 //создаем уже инфу по кинотеатру
                 CinemaHelp cinemaHelp = new CinemaHelp();
                 cinemaHelp.setCinemaName(sessionDto.getCinema().getName());
-//                List<Room> rooms1 = new ArrayList<>();
-//                rooms1 = cinemaHelp.getRooms();
-//                rooms1.add(room);
-//                cinemaHelp.setRooms(rooms1);
+
                 cinemaHelp.setRooms(rooms);
                 cinemaHelps.add(cinemaHelp);
 

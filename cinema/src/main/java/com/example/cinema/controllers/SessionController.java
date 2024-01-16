@@ -53,24 +53,24 @@ public class SessionController {
             return ResponseEntity.ok(sessionService.findByCinema(cinemaService.findById(cinemaId, language), language));
     }
 
-    @GetMapping("/find/by/{cinema}/and/{dateTime}")
-    ResponseEntity<?> findByCinemaAndDateTime(@RequestParam Long cinemaId, @RequestParam String dateTime, @RequestParam Language language) {
+    @GetMapping("/find/by/{film}/and/{dateTime}")
+    ResponseEntity<?> findByCinemaAndDateTime(@RequestParam Long filmId, @RequestParam String dateTime, @RequestParam Language language) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
         try {
             Date date = dateFormat.parse(dateTime);
-            return ResponseEntity.ok(sessionService.findByCinemaAndDateTime(cinemaService.findById(cinemaId, language),
+            return ResponseEntity.ok(sessionService.findByFilmAndDateTime(filmService.findById(filmId, language),
                     date, language));
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
     }
 
-    @GetMapping("/find/{cinema}/and/{dateTime}/formatted")
-    ResponseEntity<?> findByCinemaAndDateTimeFormatted(@RequestParam Long cinemaId, @RequestParam String dateTime, @RequestParam Language language) {
+    @GetMapping("/find/{film}/and/{dateTime}/formatted")
+    ResponseEntity<?> findByCinemaAndDateTimeFormatted(@RequestParam Long filmId, @RequestParam String dateTime, @RequestParam Language language) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
         try {
             Date date = dateFormat.parse(dateTime);
-            return ResponseEntity.ok(sessionService.findByCinemaAndDatetimeFormatted(cinemaService.findById(cinemaId, language), date, language));
+            return ResponseEntity.ok(sessionService.findByFilmAndDatetimeFormatted(filmService.findById(filmId, language), date, language));
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
